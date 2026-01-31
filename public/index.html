@@ -32,6 +32,13 @@
             </div>
         </section>
 
+        <section class="youtube-section">
+            <h2>YouTube चैनल</h2>
+            <div id="youtube-content">
+                <!-- YouTube content will be loaded here -->
+            </div>
+        </section>
+
         <section class="lectures-container">
             <h2>लेक्चर</h2>
             <div id="lectures-list">
@@ -64,6 +71,41 @@
                 `;
                 lecturesList.appendChild(lectureElement);
             });
+        }
+
+        function displayYouTubeContent(youtubeData) {
+            const youtubeContent = document.getElementById('youtube-content');
+
+            const channelInfo = document.createElement('div');
+            channelInfo.className = 'channel-info';
+            channelInfo.innerHTML = `
+                <h3>${youtubeData.name}</h3>
+                <p>${youtubeData.description}</p>
+                <a href="${youtubeData.channelUrl}" target="_blank" class="channel-link">YouTube पर देखें</a>
+            `;
+
+            const videosGrid = document.createElement('div');
+            videosGrid.className = 'videos-grid';
+
+            youtubeData.videos.forEach(video => {
+                const videoCard = document.createElement('div');
+                videoCard.className = 'video-card';
+                videoCard.innerHTML = `
+                    <h4>${video.subject}: ${video.title}</h4>
+                    <div class="video-container">
+                        <iframe
+                            src="https://www.youtube.com/embed/${video.videoId}"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                `;
+                videosGrid.appendChild(videoCard);
+            });
+
+            youtubeContent.appendChild(channelInfo);
+            youtubeContent.appendChild(videosGrid);
         }
 
         function showLectures(subject) {

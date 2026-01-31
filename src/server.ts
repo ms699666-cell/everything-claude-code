@@ -43,6 +43,41 @@ app.get('/api/lectures', (req, res) => {
   res.json(lectures);
 });
 
+app.get('/api/youtube', (req, res) => {
+  const youtubeChannel = {
+    name: 'Mission Gyan',
+    description: '10वीं कक्षा के छात्रों के लिए शैक्षिक वीडियो',
+    channelUrl: 'https://www.youtube.com/@MissionGyan',
+    videos: [
+      {
+        id: 1,
+        title: 'हिंदी व्याकरण - संज्ञा और सर्वनाम',
+        videoId: 'sample_video_1',
+        subject: 'हिंदी'
+      },
+      {
+        id: 2,
+        title: 'गणित - द्विघात समीकरण',
+        videoId: 'sample_video_2',
+        subject: 'गणित'
+      },
+      {
+        id: 3,
+        title: 'विज्ञान - प्रकाश की परावर्तन',
+        videoId: 'sample_video_3',
+        subject: 'विज्ञान'
+      },
+      {
+        id: 4,
+        title: 'इतिहास - स्वतंत्रता संग्राम',
+        videoId: 'sample_video_4',
+        subject: 'सामाजिक विज्ञान'
+      }
+    ]
+  };
+  res.json(youtubeChannel);
+});
+
 app.listen(PORT, () => {
   console.log(`Lecture app running on http://localhost:${PORT}`);
 });

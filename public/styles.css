@@ -112,6 +112,92 @@ main {
     line-height: 1.6;
 }
 
+/* YouTube section */
+.youtube-section {
+    margin-top: 3rem;
+}
+
+.youtube-section h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.channel-info {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.channel-info h3 {
+    color: #ff0000;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.channel-info p {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.channel-link {
+    display: inline-block;
+    background: #ff0000;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.channel-link:hover {
+    background: #cc0000;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.video-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-2px);
+}
+
+.video-card h4 {
+    color: #667eea;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     header h1 {
@@ -128,5 +214,13 @@ main {
 
     .subject-card {
         padding: 1.5rem;
+    }
+
+    .videos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .video-card {
+        padding: 1rem;
     }
 }
