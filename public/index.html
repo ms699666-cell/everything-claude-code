@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10वीं कक्षा का लेक्चर ऐप</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>10वीं कक्षा का लेक्चर ऐप</h1>
+        <p>हिंदी माध्यम के छात्रों के लिए शैक्षिक सामग्री</p>
+    </header>
+
+    <main>
+        <section class="subjects-grid">
+            <div class="subject-card" onclick="showLectures('हिंदी')">
+                <h2>हिंदी</h2>
+                <p>कविता, निबंध और व्याकरण</p>
+            </div>
+            <div class="subject-card" onclick="showLectures('गणित')">
+                <h2>गणित</h2>
+                <p>बीजगणित, ज्यामिति और त्रिकोणमिति</p>
+            </div>
+            <div class="subject-card" onclick="showLectures('विज्ञान')">
+                <h2>विज्ञान</h2>
+                <p>भौतिकी, रसायन और जीवविज्ञान</p>
+            </div>
+            <div class="subject-card" onclick="showLectures('सामाजिक विज्ञान')">
+                <h2>सामाजिक विज्ञान</h2>
+                <p>इतिहास, भूगोल और नागरिकशास्त्र</p>
+            </div>
+        </section>
+
+        <section class="lectures-container">
+            <h2>लेक्चर</h2>
+            <div id="lectures-list">
+                <!-- Lectures will be loaded here -->
+            </div>
+        </section>
+    </main>
+
+    <script>
+        async function loadLectures() {
+            try {
+                const response = await fetch('/api/lectures');
+                const lectures = await response.json();
+                displayLectures(lectures);
+            } catch (error) {
+                console.error('Error loading lectures:', error);
+            }
+        }
+
+        function displayLectures(lectures) {
+            const lecturesList = document.getElementById('lectures-list');
+            lecturesList.innerHTML = '';
+
+            lectures.forEach(lecture => {
+                const lectureElement = document.createElement('div');
+                lectureElement.className = 'lecture-item';
+                lectureElement.innerHTML = `
+                    <h3>${lecture.subject}: ${lecture.title}</h3>
+                    <p>${lecture.content}</p>
+                `;
+                lecturesList.appendChild(lectureElement);
+            });
+        }
+
+        function showLectures(subject) {
+            // Filter lectures by subject (this could be enhanced with backend filtering)
+            loadLectures();
+        }
+
+        // Load all lectures on page load
+        window.onload = loadLectures;
+    </script>
+</body>
+</html>
